@@ -1,0 +1,65 @@
+<div class="container m-t-40">
+    <button type="submit" class="btn btn-primary " (click)="onClick1()" *ngIf="loadQuestion">Load Question</button>
+
+    <ngb-tabset *ngIf="showQuestion">
+        <ngb-tab *ngFor="let item of question;let i=index">
+            <ng-template ngbTabTitle>
+                <div>Question {{i+1}}</div>
+            </ng-template>
+            <ng-template ngbTabContent>
+                <fieldset>
+                    <fieldset class="form-group">
+                        <legend>{{item.question}}</legend>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio" *ngFor="let ans of item.Answer;let j=index">
+                                <input type="radio" id="customRadio{{j+1}}" name="answer1"
+                                       (click)="onClick2(ans,item.question,item.stop)"  class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio{{j+1}}">{{ans}}</label>
+                            </div>
+                        </div>
+                        <div *ngIf="showsubQuestion">
+                            <fieldset class="form-group" *ngFor="let item2 of item.sub_question;let m=index">
+                                <legend>{{item2.question}}</legend>
+                                <!--<input type="hidden" name="question2" ngModel="{{item2.question}}" >-->
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio"
+                                        *ngFor="let ans2 of item2.Answer;let k=index">
+                                        <input type="radio" id="custom{{k}}"
+                                                name="answer2" (click)="onClick3(ans2,item2.question,item2.stop)"
+                                            class="custom-control-input">
+                                        <label class="custom-control-label" for="custom{{k}}">{{ans2}}</label>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="showsubQuestion2">
+                                    <fieldset class="form-group" *ngFor="let item3 of item2.sub_question2;let n=index">
+                                        <legend>{{item3.question}}</legend>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio"
+                                                *ngFor="let ans of item3.Answer;let k=index">
+                                                <input type="radio" id="custo{{k}}"  name="answer3" (click)="onClick4(ans,item3.question,item3.stop)"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="custo{{k}}">{{ans}}</label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+                </fieldset>
+            </ng-template>
+        </ngb-tab>
+
+
+    </ngb-tabset>
+
+
+
+
+
+
+</div>
